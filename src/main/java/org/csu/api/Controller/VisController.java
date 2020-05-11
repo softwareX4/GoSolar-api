@@ -6,6 +6,8 @@ import org.csu.api.service.StatisticService.FileTraverse;
 import org.csu.api.service.StatisticService.FileTraverseTree;
 import org.csu.api.service.StatisticService.NodeEntity;
 import org.csu.api.util.Node;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import java.io.IOException;
 @RestController
 public class VisController {
 
+
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private FileTraverseTree fileTraverseTree;
@@ -30,7 +34,8 @@ public class VisController {
     public RestResultDTO initial(@RequestParam("path") String path){
         try {
             Node<NodeEntity> root = fileTraverseTree.analyse(path);
-            return new RestResultDTO<Node<NodeEntity>>(200,"success",root);
+            RestResultDTO res =  new RestResultDTO<Node<NodeEntity>>(200,"success",root);
+            return res;
         } catch (IOException e) {
             e.printStackTrace();
             return new RestResultDTO(400,"failed");

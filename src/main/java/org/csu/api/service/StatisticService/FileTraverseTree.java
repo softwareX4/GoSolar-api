@@ -5,6 +5,8 @@ import org.csu.api.dto.StructDTO;
 import org.csu.api.service.AnalyseService.Analysor.FileAnalysorThread;
 import org.csu.api.util.AppConst;
 import org.csu.api.util.Node;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.stereotype.Service;
@@ -111,7 +113,8 @@ public class FileTraverseTree {
 
                     codeTree.changeEntity(fileNode);
 
-                    System.out.println(fileNode);
+                    //System.out.println(fileNode);
+
 
                     filecnt++;
 
@@ -205,8 +208,9 @@ public class FileTraverseTree {
     }
 
 
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static Node<NodeEntity> analyse(String rootPath) throws IOException {
+    public  Node<NodeEntity> analyse(String rootPath) throws IOException {
 
         long startTime = System.currentTimeMillis();    //获取开始时间
         //System.out.println(Runtime.getRuntime().availableProcessors());
@@ -232,16 +236,14 @@ public class FileTraverseTree {
 
         System.out.println("程序运行时间：" + (endTime - startTime) + "ms");    //输出程序运行时间
 
+        logger.info("程序运行时间：" + (endTime - startTime) + "ms");
         return root;
     }
-/*
-
     public static void main(String[] args)throws IOException {
 
         String rootPath = "G:\\AAApersonal\\毕设\\project\\kubernetes-master\\pkg\\controller";
-        FileTraverseTree.analyse(rootPath);
+        new FileTraverseTree().analyse(rootPath);
 
     }
-*/
 
 }
