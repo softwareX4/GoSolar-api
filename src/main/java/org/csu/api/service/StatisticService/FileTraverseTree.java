@@ -218,7 +218,7 @@ public class FileTraverseTree {
         File rootFile = new File(rootPath);
         Path startingDir = Paths.get(rootPath);
 
-        NodeEntity nodeEntity = new NodeEntity(AppConst.Type.FILE,rootFile.getName());
+        NodeEntity nodeEntity = new NodeEntity(AppConst.Type.PACKAGE,rootFile.getName());
         nodeEntity.setSrc(rootFile.getPath());
         Node<NodeEntity> root = new Node<>(nodeEntity);
 

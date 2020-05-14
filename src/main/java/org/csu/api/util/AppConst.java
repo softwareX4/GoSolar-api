@@ -10,4 +10,7 @@ public  class AppConst {
 
     //线程数
     public static final int nThread = 8;
+
+    //前端协商Package半径大小
+    public static final int PACKAGE_R = 2;
 }

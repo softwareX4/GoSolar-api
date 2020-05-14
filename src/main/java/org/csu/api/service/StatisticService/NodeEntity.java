@@ -6,9 +6,9 @@ import org.csu.api.dto.FeatureDTO;
 public class NodeEntity {
     private int type;
     private String name;
-    private String src;
     private FeatureDTO feature;
-
+    private int radius;
+    private String src;
     public NodeEntity(int type, String name) {
         this.type = type;
         this.name = name;
@@ -45,6 +45,14 @@ public class NodeEntity {
 
     public void setFeature(FeatureDTO feature) {
         this.feature = feature;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     @Override

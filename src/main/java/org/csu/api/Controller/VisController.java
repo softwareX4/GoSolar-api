@@ -2,6 +2,7 @@ package org.csu.api.Controller;
 
 import org.csu.api.dto.PackageDTO;
 import org.csu.api.dto.RestResultDTO;
+import org.csu.api.service.StatisticService.Calculator;
 import org.csu.api.service.StatisticService.FileTraverse;
 import org.csu.api.service.StatisticService.FileTraverseTree;
 import org.csu.api.service.StatisticService.NodeEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RestController
+@CrossOrigin
 public class VisController {
 
 
@@ -26,6 +28,7 @@ public class VisController {
 
     @RequestMapping(value = "/index")
     public RestResultDTO index(){
+        System.out.println("访问/index");
             return new RestResultDTO(200,"connect successed");
     }
 
@@ -34,11 +37,16 @@ public class VisController {
     public RestResultDTO initial(@RequestParam("path") String path){
         try {
             Node<NodeEntity> root = fileTraverseTree.analyse(path);
+            Calculator cal = new Calculator();
+            cal.calcR(root);
             RestResultDTO res =  new RestResultDTO<Node<NodeEntity>>(200,"success",root);
+
             return res;
         } catch (IOException e) {
             e.printStackTrace();
             return new RestResultDTO(400,"failed");
         }
     }
+
+
 }
