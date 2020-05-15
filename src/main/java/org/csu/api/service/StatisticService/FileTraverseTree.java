@@ -96,6 +96,7 @@ public class FileTraverseTree {
                     entity.setSrc(fileDTO.getFileFeature().getSrc());
                     entity.setFeature(fileDTO.getFileFeature());
                     Node<NodeEntity> fileNode = new Node<>(entity);
+                    fileNode.getNodeEntity().setRadius(Calculator.getRadius(fileNode));
 
                     //将内部Struct节点挂为子结点
                     for(StructDTO structDTO : fileDTO.getStructs()){
@@ -103,6 +104,8 @@ public class FileTraverseTree {
                         sn.setFeature(structDTO.getFeature());
                         sn.setSrc(entity.getSrc());
                         Node<NodeEntity> structNode = new Node<>(sn);
+
+                        structNode.getNodeEntity().setRadius(Calculator.getRadius(structNode));
 
                         fileNode.addChildNode(structNode);
                         structNode.setParentNode(fileNode);
@@ -178,6 +181,7 @@ public class FileTraverseTree {
                     NodeEntity nodeEntity = new NodeEntity(AppConst.Type.PACKAGE,file.getName());
                     nodeEntity.setSrc(file.getPath());
                     Node<NodeEntity> n = new Node<NodeEntity>(nodeEntity);
+                    n.getNodeEntity().setRadius(Calculator.getRadius(n));
                     //递归
                     listDirectory(file,n);
 

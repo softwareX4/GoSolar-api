@@ -60,8 +60,9 @@ public class NodeEntity {
         return "NodeEntity{" +
                 "type=" + type +
                 ", name='" + name + '\'' +
+                ", feature=" + feature +
+                ", radius=" + radius +
                 ", src='" + src + '\'' +
-                ",     feature=" + feature +
                 '}';
     }
 }
