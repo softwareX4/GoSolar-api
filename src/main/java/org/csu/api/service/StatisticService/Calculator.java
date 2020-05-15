@@ -19,7 +19,7 @@ public  class Calculator {
         this.radius = new HashMap<>();
     }
 
- 
+
     public static int getRadius(Node<NodeEntity> node){
         int type = node.getNodeEntity().getType();
         if(type ==  AppConst.Type.PACKAGE){
